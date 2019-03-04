@@ -1,0 +1,11 @@
+{
+    "name": "alex/php-backend",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Alex Mimü",
+            "email": "6150@htl.rennweg.at"
+        }
+    ],
+    "require": {}
+}
