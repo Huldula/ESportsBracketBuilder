@@ -7,5 +7,7 @@
             "email": "6150@htl.rennweg.at"
         }
     ],
-    "require": {}
+    "require": {
+        "doctrine/orm": "^2.6"
+    }
 }
