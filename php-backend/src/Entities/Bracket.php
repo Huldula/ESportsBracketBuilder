@@ -42,12 +42,6 @@ class Bracket implements \JsonSerializable
         $this->games = new ArrayCollection();
     }
 
-    public function setUser(User $user)
-    {
-        $user->assignedBracket($this);
-        $this->user = $user;
-    }
-
     public function assignedGame(Game $game)
     {
         $this->games[] = $game;
@@ -78,18 +72,9 @@ class Bracket implements \JsonSerializable
         return $this->games;
     }
 
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
     public function getPlayers()
     {
         return $this->players;
-    }
-
-    public function getPlayersArray(): array {
-        return $this->players->toArray();
     }
 
     public function jsonSerialize(): array

@@ -34,13 +34,13 @@ class Game implements \JsonSerializable
      * @var int
      * @Column(type="integer")
      */
-    protected $roundInBracket;
+    protected $roundIndex;
 
     /**
      * @var int
      * @Column(type="integer")
      */
-    protected $positionInRound;
+    protected $positionIndex;
 
     public function getId(): int
     {
@@ -67,26 +67,6 @@ class Game implements \JsonSerializable
         $this->player2 = $player2;
     }
 
-    public function getPlayer1Points(): int
-    {
-        return $this->player1Points;
-    }
-
-    public function setPlayer1Points(int $player1Points): void
-    {
-        $this->player1Points = $player1Points;
-    }
-
-    public function getPlayer2Points(): int
-    {
-        return $this->player2Points;
-    }
-
-    public function setPlayer2Points(int $player2Points): void
-    {
-        $this->player2Points = $player2Points;
-    }
-
     public function setBracket(Bracket $bracket)
     {
         $bracket->assignedGame($this);
@@ -98,34 +78,24 @@ class Game implements \JsonSerializable
         return $this->bracket;
     }
 
-    public function getRoundInBracket(): int
+    public function getRoundIndex(): int
     {
-        return $this->roundInBracket;
+        return $this->roundIndex;
     }
 
-    public function setRoundInBracket(int $roundInBracket): void
+    public function setRoundIndex(int $roundIndex): void
     {
-        $this->roundInBracket = $roundInBracket;
+        $this->roundIndex = $roundIndex;
     }
 
-    public function getWinner(): Player {
-        if($this->player1Points == null || $this->player2Points == null) {
-            return null;
-        }
-        if($this->player1Points == $this->player2Points) {
-            return rand(0,1) < 0.5 ? $this->player1 : $this->player2;
-        }
-        return $this->player1Points < $this->player2Points ? $this->player2 : $this->player1;
+    public function getPositionIndex(): int
+    {
+        return $this->positionIndex;
     }
 
-    public function getPositionInRound(): int
+    public function setPositionIndex(int $positionIndex): void
     {
-        return $this->positionInRound;
-    }
-
-    public function setPositionInRound(int $positionInRound): void
-    {
-        $this->positionInRound = $positionInRound;
+        $this->positionIndex = $positionIndex;
     }
 
     public function jsonSerialize(): array
@@ -134,10 +104,8 @@ class Game implements \JsonSerializable
             'id' => $this->id,
             'player1' => $this->player1,
             'player2' => $this->player2,
-            'player1Points' => $this->player1Points,
-            'player2Points' => $this->player2Points,
-            'roundInBracket' => $this->roundInBracket,
-            'positionInRound' => $this->positionInRound
+            'roundIndex' => $this->roundIndex,
+            '$positionIndex' => $this->positionIndex
         );
     }
 }
