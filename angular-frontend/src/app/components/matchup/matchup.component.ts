@@ -11,7 +11,8 @@ export class MatchupComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getMatchUp().subscribe(console.log);
+    // this.data.getMatchUp().subscribe(console.log);
+    this.data.createBracket('test0', 2).subscribe(console.log);
   }
 
 }
