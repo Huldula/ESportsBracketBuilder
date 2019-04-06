@@ -8,12 +8,9 @@ import {DataService} from '../../services/data-service/data.service';
 })
 export class MatchupComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor() { }
 
   ngOnInit() {
-    // this.data.getMatchUp().subscribe(console.log);
-    // this.data.testConnection();
-    this.data.createBracket('test0', 2).subscribe(console.log);
   }
 
 }

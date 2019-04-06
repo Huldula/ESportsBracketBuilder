@@ -32,10 +32,23 @@ export class DataService {
     });
   }
 
-  public getBracket(id: number): Observable<any> {
+  public getBracketById(id: number): Observable<any> {
     return this.http.post('/api/', {
       action: 'get',
-      id,
+      id
+    });
+  }
+
+  public getBracketByName(name: string): Observable<any> {
+    return this.http.post('/api/', {
+      action: 'get',
+      name
+    });
+  }
+
+  public getAllBrackets(): Observable<any> {
+    return this.http.post('/api/', {
+      action: 'getAll'
     });
   }
 

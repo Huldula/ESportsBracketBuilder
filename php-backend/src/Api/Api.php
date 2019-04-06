@@ -6,13 +6,14 @@ require_once "vendor/autoload.php";
 
 use Doctrine\ORM\EntityManager;
 use ESportsBracketBuilder\Api\Actions\BracketManager;
+use StdClass;
 
 class Api {
 
     private $entityManager;
 
     public function __construct(EntityManager $entityManager) {
-        $resp = new \StdClass();
+        $resp = new StdClass();
 
         $this->entityManager = $entityManager;
         header("content-type: application/json");
@@ -26,9 +27,9 @@ class Api {
 
     }
 
-    public function processApi(object $params) {
+    public function processApi($params) {
         $bracketManager = new BracketManager($this->entityManager);
-        $resp = new \StdClass();
+        $resp = new StdClass();
 
         if (!isset($params->action)) {
             $resp->error = 'action is not defined';
@@ -46,7 +47,10 @@ class Api {
                 $resp = $bracketManager->rename($params->id, $params->name);
                 break;
             case 'get':
-                $resp = $bracketManager->get($params->id);
+                $resp = $bracketManager->get($params);
+                break;
+            case 'getAll':
+                $resp = $bracketManager->getAll($params);
                 break;
             default:
                 $resp->error = 'action "' . $params->action . '" does not exist';
@@ -56,7 +60,7 @@ class Api {
         $this->respond(200, $resp);
     }
 
-    private function respond(int $code, object $resp) {
+    private function respond(int $code, StdClass $resp) {
         http_response_code($code);
         $out = array(
             'status' => 'oida',

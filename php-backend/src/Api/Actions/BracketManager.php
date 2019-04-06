@@ -5,18 +5,19 @@ namespace ESportsBracketBuilder\Api\Actions;
 use ESportsBracketBuilder\Entities\Bracket;
 use ESportsBracketBuilder\Entities\Player;
 use ESportsBracketBuilder\Entities\Game;
+use StdClass;
 
 class BracketManager extends EntityManagerProvider {
 
-    public function create(string $name, int $size): object {
-        $resp = new \StdClass();
+    public function create(string $name, int $size): StdClass {
+        $resp = new StdClass();
         $bracketWithName = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
             ->findBy(array(
                 'name' => $name
             ));
 
         if($bracketWithName != null) {
-            $resp->error = 'name already exists';
+            $resp->error = 'cannot create bracket. Name "' . $name . '"" already exists';
             return $resp;
         }
 
@@ -25,7 +26,7 @@ class BracketManager extends EntityManagerProvider {
             $sizeTest = $sizeTest / 2;
         }
         if ($sizeTest != 1) {
-            $resp->error =  'size must me a potency of two';
+            $resp->error =  'size must me a potency of two. got ' . $size;
             return $resp;
         }
 
@@ -35,8 +36,9 @@ class BracketManager extends EntityManagerProvider {
         $players = [];
         for ($i = 0; $i < $size; $i++) {
             $player = new Player();
-            $player->setName('Player ' . $i);
+            $player->setName('Player #' . $i);
             $player->setBracket($bracket);
+            $players[$i] = $player;
         }
 
         for ($i = 0; $i < $size / 2; $i++) {
@@ -51,17 +53,18 @@ class BracketManager extends EntityManagerProvider {
         $this->entityManager->persist($bracket);
         $this->entityManager->flush();
 
+        $resp->response = $bracket;
 
         return $resp;
     }
 
-    public function delete(int $id): object {
+    public function delete(int $id): StdClass {
         $resp = new StdClass();
         $bracket = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
         ->findOneBy(array( 'id' => $id ));
 
         if($bracket == null) {
-            $resp->error = 'bracket id does not exist';
+            $resp->error = 'Bracket id does not exist. Got ' . $id;
             return $resp;
         }
 
@@ -71,7 +74,7 @@ class BracketManager extends EntityManagerProvider {
         return $resp;
     }
 
-    public function rename(int $id, string $name): object {
+    public function rename(int $id, string $name): StdClass {
         $resp = new StdClass();
         $bracketWithName = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
             ->findBy(array(
@@ -93,10 +96,18 @@ class BracketManager extends EntityManagerProvider {
         return $resp;
     }
 
-    public function get(int $id): object {
+    public function get($params): StdClass {
         $resp = new StdClass();
-        $bracket = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
-            ->findOneBy(array( 'id' => $id ));
+        if (isset($params->id)) {
+            $bracket = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
+                ->findOneBy(array( 'id' => $params->id ));
+        } else if (isset($params->name)) {
+            $bracket = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
+                ->findOneBy(array( 'name' => $params->name ));
+        } else {
+            $resp->error = 'Id and name are not set. At least one of them has to be set';
+            return $resp;
+        }
 
         if ($bracket == null) {
             $resp->error = 'bracket id does not exist';
@@ -104,6 +115,20 @@ class BracketManager extends EntityManagerProvider {
         }
 
         $resp->response = $bracket;
+
+        return $resp;
+    }
+
+    public function getAll($params): StdClass {
+        $resp = new StdClass();
+
+        $brackets = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket');
+
+        if ($brackets == null) {
+            $resp->response = [];
+        }
+
+        $resp->response = $brackets;
 
         return $resp;
     }
