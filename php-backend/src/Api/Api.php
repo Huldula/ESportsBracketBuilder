@@ -12,10 +12,16 @@ class Api {
     private $entityManager;
 
     public function __construct(EntityManager $entityManager) {
+        $resp = new \StdClass();
+
         $this->entityManager = $entityManager;
         header("content-type: application/json");
         $rawData = file_get_contents('php://input');
         $data = json_decode($rawData);
+        if ($data == null) {
+            $resp->error = 'action is not defined';
+            $this->respond(400, $resp);
+        }
         $this->processApi($data);
 
     }
@@ -51,9 +57,9 @@ class Api {
     }
 
     private function respond(int $code, object $resp) {
-        http_response_code(200);
+        http_response_code($code);
         $out = array(
-            'status' => 'success',
+            'status' => 'oida',
             'response' => $resp
         );
         echo json_encode($out);

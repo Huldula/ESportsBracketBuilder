@@ -12,6 +12,7 @@ export class MatchupComponent implements OnInit {
 
   ngOnInit() {
     // this.data.getMatchUp().subscribe(console.log);
+    // this.data.testConnection();
     this.data.createBracket('test0', 2).subscribe(console.log);
   }
 

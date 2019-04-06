@@ -26,11 +26,6 @@ class Bracket implements \JsonSerializable
     protected $players;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="assignedBracket")
-     **/
-    protected $user;
-
-    /**
      * @var string
      * @Column(type="string")
      */

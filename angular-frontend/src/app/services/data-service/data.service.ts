@@ -38,4 +38,8 @@ export class DataService {
       id,
     });
   }
+
+  public testConnection(): void {
+    fetch('/api/').then(console.log);
+  }
 }
