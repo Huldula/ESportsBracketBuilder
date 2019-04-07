@@ -14,8 +14,9 @@ export class BracketListComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.createBracket('test0', 2);
-    this.data.getAllBrackets().subscribe(console.log);
+    this.data.getAllBrackets().subscribe(res => {
+      this.brackets = res.response.response;
+    });
   }
 
 }

@@ -50,7 +50,7 @@ class Api {
                 $resp = $bracketManager->get($params);
                 break;
             case 'getAll':
-                $resp = $bracketManager->getAll($params);
+                $resp = $bracketManager->getAll();
                 break;
             default:
                 $resp->error = 'action "' . $params->action . '" does not exist';

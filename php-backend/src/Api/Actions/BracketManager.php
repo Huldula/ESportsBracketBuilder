@@ -119,10 +119,11 @@ class BracketManager extends EntityManagerProvider {
         return $resp;
     }
 
-    public function getAll($params): StdClass {
+    public function getAll(): StdClass {
         $resp = new StdClass();
 
-        $brackets = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket');
+        $brackets = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
+            ->findBy(array());
 
         if ($brackets == null) {
             $resp->response = [];

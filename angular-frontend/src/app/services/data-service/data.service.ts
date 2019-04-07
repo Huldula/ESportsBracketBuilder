@@ -51,8 +51,4 @@ export class DataService {
       action: 'getAll'
     });
   }
-
-  public testConnection(): void {
-    fetch('/api/').then(console.log);
-  }
 }

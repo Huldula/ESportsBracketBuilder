@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchupComponent } from './matchup.component';
+import { BracketPreviewComponent } from './bracket-preview.component';
 
-describe('MatchupComponent', () => {
-  let component: MatchupComponent;
-  let fixture: ComponentFixture<MatchupComponent>;
+describe('BracketPreviewComponent', () => {
+  let component: BracketPreviewComponent;
+  let fixture: ComponentFixture<BracketPreviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatchupComponent ]
+      declarations: [ BracketPreviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatchupComponent);
+    fixture = TestBed.createComponent(BracketPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

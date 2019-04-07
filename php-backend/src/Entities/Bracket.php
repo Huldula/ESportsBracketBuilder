@@ -77,7 +77,8 @@ class Bracket implements \JsonSerializable
        return array(
            'id' => $this->id,
            'name' => $this->getName(),
-           'games' => $this->getGames()->toArray()
+           'games' => $this->getGames()->toArray(),
+           'players' => $this->getPlayers()->toArray()
        );
     }
 

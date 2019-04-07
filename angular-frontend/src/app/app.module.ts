@@ -4,21 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatchupComponent } from './components/matchup/matchup.component';
 import { BracketListComponent } from './components/bracket-list/bracket-list.component';
 import { BracketComponent } from './components/bracket/bracket.component';
+import { BracketPreviewComponent } from './components/bracket-preview/bracket-preview.component';
+import {MatCardModule, MatListModule, MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatchupComponent,
     BracketListComponent,
-    BracketComponent
+    BracketComponent,
+    BracketPreviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatTableModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
