@@ -1,0 +1,15 @@
+.bracket-preview {
+  margin: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .flex {
+    width: 33%;
+  }
+
+  button {
+    margin-left: 6px;
+  }
+}

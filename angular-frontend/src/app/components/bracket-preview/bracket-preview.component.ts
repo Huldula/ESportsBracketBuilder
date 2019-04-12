@@ -16,4 +16,7 @@ export class BracketPreviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  public removeBracket(): void {
+
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Bracket} from '../../models/bracket';
-import {DataService} from '../../services/data-service/data.service';
+import {BracketsService} from '../../services/brackets-service/brackets.service';
 
 @Component({
   selector: 'app-bracket-list',
@@ -9,14 +8,9 @@ import {DataService} from '../../services/data-service/data.service';
 })
 export class BracketListComponent implements OnInit {
 
-  brackets: Bracket[];
-
-  constructor(private data: DataService) { }
+  constructor(private bracketService: BracketsService) { }
 
   ngOnInit() {
-    this.data.getAllBrackets().subscribe(res => {
-      this.brackets = res.response.response;
-    });
   }
 
 }

@@ -1,10 +1,16 @@
-<div id="bar">
-  <div>
-    {{bracket.id}}
+<mat-card class="bracket-preview">
+  <div class="flex">
+    {{bracket.name}}
   </div>
-  <div>
+  <div class="flex">
     Players: {{bracket.players.length}}
   </div>
-</div>
-
-<mat-card>ASd</mat-card>
+  <div>
+    <button mat-flat-button color="warn" (click)="removeBracket()">
+      <i class="material-icons">remove</i>
+    </button>
+    <button mat-flat-button color="primary" [routerLink]="['/bracket', bracket.id]" >
+      <i class="material-icons">chevron_right</i>
+    </button>
+  </div>
+</mat-card>

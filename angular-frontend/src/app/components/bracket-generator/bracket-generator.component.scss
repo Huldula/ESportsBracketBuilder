@@ -1,0 +1,23 @@
+.bracket-gen {
+  margin: 10px;
+
+  padding-bottom: 25px;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    mat-form-field {
+      height: 36px;
+    }
+
+    .flex {
+      width: 33%;
+    }
+
+    button {
+      margin-left: 6px;
+    }
+  }
+}
