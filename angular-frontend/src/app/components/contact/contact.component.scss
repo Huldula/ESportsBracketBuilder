@@ -1,0 +1,21 @@
+@import "../../../styles";
+
+section {
+  margin: 0;
+  padding: 10px 30px 30px 30px;
+
+  width: 100%;
+  height: calc((100% - 60px) * 0.72);
+
+  position: absolute;
+  top: calc((100% - 60px) * 0.5);
+  left: 50%;
+  transform: translate(-50%, calc((100% - 60px) * -0.5));
+
+  background: $small-background-color;
+  color: $text-color;
+
+  @media screen and (min-width: 800px) {
+    width: 800px;
+  }
+}

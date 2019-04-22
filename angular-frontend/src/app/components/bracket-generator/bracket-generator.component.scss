@@ -1,19 +1,27 @@
-.bracket-gen {
-  margin: 10px;
+@import "../../../styles";
 
-  padding-bottom: 25px;
+.bracket-gen {
+  margin: 20px;
+
+  padding-top: 20px;
+
+  border-top: 3px solid $button-border-color;
 
   form {
+    color: $text-color;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    mat-form-field {
-      height: 36px;
-    }
-
     .flex {
       width: 33%;
+      line-height: 47px;
+      font-size: 20px;
+    }
+
+    .buttons {
+      min-width: 15%;
     }
 
     button {

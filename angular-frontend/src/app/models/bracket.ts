@@ -5,5 +5,5 @@ export interface Bracket {
   id: number;
   name: string;
   games: Game[];
-  players: Player[];
+  // players: Player[];
 }

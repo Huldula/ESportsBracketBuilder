@@ -1,7 +1,12 @@
-<div id="header">
-  <a routerLink="/home">
-    <img src="../assets/logo.svg" alt="logo">
-  </a>
+<div *ngIf="bs.brackets else loading">
+  <app-navbar></app-navbar>
+
+  <section class="page-content">
+    <router-outlet></router-outlet>
+  </section>
 </div>
 
-<router-outlet></router-outlet>
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+

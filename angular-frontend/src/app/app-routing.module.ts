@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {BracketListComponent} from './components/bracket-list/bracket-list.component';
+import {BracketComponent} from './components/bracket/bracket.component';
+import {AboutComponent} from './components/about/about.component';
+import {ContactComponent} from './components/contact/contact.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/all-brackets',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'all-brackets',
     component: BracketListComponent
   },
   {
-    path: 'bracket/:name',
-    component: BracketListComponent
+    path: 'bracket/:id',
+    component: BracketComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
 ];
 

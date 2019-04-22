@@ -17,25 +17,42 @@ export class BracketsService {
     });
   }
 
-  public async addBracket(name: string, playerCount: number): Promise<boolean> {
+  public async addBracket(name: string, playerCount: number): Promise<void> {
     if (this.bracketNameExists(name)) {
-      return false;
+      return;
     }
     const resp = await this.data.createBracket(name, playerCount).toPromise();
     const newBracket: Bracket = resp.response.response;
-    console.log(newBracket);
     this.brackets.push(newBracket);
-    console.log(newBracket);
-    return true;
   }
 
-  public removeBracketById(id: number): boolean {
+  public removeBracketById(id: number): void {
     this.brackets = this.brackets.filter(b => b.id !== id);
-    return true;
+    this.data.deleteBracket(id).subscribe();
+  }
+
+  public getBracketById(id: number): Bracket {
+    for (const bracket of this.brackets) {
+      if (bracket.id === id) {
+        return bracket;
+      }
+    }
+    return undefined;
+  }
+
+  public renameBracket(bracket: Bracket, newName: string): void {
+    if (bracket.name !== newName) {
+      bracket.name = newName;
+      this.data.renameBracket(bracket.id, newName).subscribe();
+    }
+  }
+
+  public shuffleBracketById(id: number): void {
+    this.data.shuffleBracketById(id).subscribe(console.log);
   }
 
   private bracketNameExists(name: string): boolean {
-    return this.brackets.findIndex(b => b.name === name) !== -1;
+    return this.brackets.findIndex(b => b.name.toUpperCase() === name.toUpperCase()) !== -1;
   }
 
 }

@@ -1,26 +1,25 @@
-<mat-card class="bracket-gen">
+<div class="bracket-gen">
   <form [formGroup]="bracketForm">
-    <mat-form-field class="flex">
-      <input matInput type="text" placeholder="Bracket name" formControlName="name" required>
-    </mat-form-field>
-    <mat-form-field class="flex">
-      <mat-label>Player Count</mat-label>
-      <!--      <mat-select (selectionChange)="">-->
-      <mat-select formControlName="playerCount" required>
-        <mat-option value="2">2</mat-option>
-        <mat-option value="4">4</mat-option>
-        <mat-option value="8">8</mat-option>
-        <mat-option value="16">16</mat-option>
-        <mat-option value="32">32</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div>
-      <button mat-flat-button color="warn" (click)="bracketForm.reset()">
+
+    <input class="flex" type="text" placeholder="Bracket name" formControlName="name">
+
+    <select required class="flex" formControlName="playerCount">
+      <option value="" disabled hidden selected>Player count</option>
+      <option value="2">2</option>
+      <option value="4">4</option>
+      <option value="8">8</option>
+      <option value="16">16</option>
+      <option value="32">32</option>
+    </select>
+
+    <div class="buttons">
+      <button (click)="resetForm()">
         <i class="material-icons">delete</i>
       </button>
-      <button mat-flat-button color="primary" (click)="addBracket()">
+      <button (click)="addBracket()">
         <i class="material-icons">add</i>
       </button>
     </div>
+
   </form>
-</mat-card>
+</div>

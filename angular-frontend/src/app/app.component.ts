@@ -7,7 +7,6 @@ import {BracketsService} from './services/brackets-service/brackets.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-frontend';
 
   constructor(private bs: BracketsService) {
 

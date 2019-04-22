@@ -1,7 +1,9 @@
-<section>
-  <app-bracket-preview *ngFor="let bracket of bracketService.brackets" [bracket]="bracket"></app-bracket-preview>
+<section class="middle">
+  <h1>BRACKETS</h1>
+
+  <div class="preview-list">
+    <app-bracket-preview *ngFor="let bracket of bracketService.brackets" [bracket]="bracket"></app-bracket-preview>
+  </div>
+
+  <app-bracket-generator></app-bracket-generator>
 </section>
-
-<mat-divider></mat-divider>
-
-<app-bracket-generator></app-bracket-generator>

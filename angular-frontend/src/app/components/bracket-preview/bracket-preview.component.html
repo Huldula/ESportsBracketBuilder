@@ -1,16 +1,25 @@
-<mat-card class="bracket-preview">
+<div class="bracket-preview">
+
+
   <div class="flex">
-    {{bracket.name}}
+    <i class="material-icons edit-i" (click)="edit()">{{isEditing ? 'clear' : 'edit'}}</i>
+    <input #nameInput [class.hide]="!isEditing" type="text"
+           (keydown.enter)="saveChanges()" [(ngModel)]="tempName">
+    <div class="inline" *ngIf="!isEditing">{{bracket.name}}</div>
+    <i class="material-icons edit-i" [class.hide]="!isEditing" (click)="saveChanges()">check</i>
   </div>
+
+
   <div class="flex">
     Players: {{bracket.players.length}}
   </div>
-  <div>
-    <button mat-flat-button color="warn" (click)="removeBracket()">
+
+  <div class="buttons">
+    <button (click)="removeBracket()">
       <i class="material-icons">remove</i>
     </button>
-    <button mat-flat-button color="primary" [routerLink]="['/bracket', bracket.id]" >
+    <button [routerLink]="['/bracket', bracket.id]" >
       <i class="material-icons">chevron_right</i>
     </button>
   </div>
-</mat-card>
+</div>

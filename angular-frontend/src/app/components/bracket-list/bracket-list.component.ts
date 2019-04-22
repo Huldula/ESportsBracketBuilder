@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BracketsService} from '../../services/brackets-service/brackets.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bracket-list',
@@ -8,9 +9,10 @@ import {BracketsService} from '../../services/brackets-service/brackets.service'
 })
 export class BracketListComponent implements OnInit {
 
-  constructor(private bracketService: BracketsService) { }
+  constructor(private bracketService: BracketsService, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('EsportsBracketBuilder/home');
   }
 
 }

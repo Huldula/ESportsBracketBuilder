@@ -1,7 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+$page-background-color: #34495e;
+$small-background-color: #191919;
+$button-border-color: #27ae60;
+$text-color: white;
+
+$navbar-height: 60;
+
+
+//html, body { height: 100%; }
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $page-background-color;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button {
+  background: none;
+  outline: none;
+  cursor: pointer;
+
+  border: 2px solid $button-border-color;
+  border-radius: 50%;
+  padding: 8px 10px;
+  color: $text-color;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: $button-border-color;
+    color: black;
+  }
+}
+
+
+input, select {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: none;
+  outline: none;
+  color: $text-color;
+  line-height: 47px;
+  font-size: 20px;
+
+  border: none;
+  border-bottom: 2px solid $button-border-color;
+
+  option {
+    background-color: $small-background-color;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: $text-color;
+  }
+}
+
+select:invalid {
+  color: rgba($text-color, 0.4);
+}
+
+
+i {
+  user-select: none;
+}

@@ -1,0 +1,19 @@
+@import "../../../styles";
+
+#all {
+  left: 50%;
+  position: absolute;
+
+  transform: translateX(-50%);
+
+  h1 {
+    font-size: 35px;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $small-background-color;
+  }
+
+  #games {
+  }
+}

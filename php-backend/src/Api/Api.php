@@ -23,28 +23,34 @@ class Api {
             $resp->error = 'action is not defined';
             $this->respond(400, $resp);
         }
-        $this->processApi($data);
+        $this->processAndRespond($data);
 
     }
 
-    public function processApi($params) {
+    public function processAndRespond($params) {
         $bracketManager = new BracketManager($this->entityManager);
         $resp = new StdClass();
 
         if (!isset($params->action)) {
-            $resp->error = 'action is not defined';
+            $resp->error = 'Action is not defined';
             $this->respond(400, $resp);
         }
 
         switch ($params->action) {
             case 'create':
-                $resp = $bracketManager->create($params->name, $params->size);
+                $resp = $bracketManager->create($params);
                 break;
             case 'delete':
-                $resp = $bracketManager->delete($params->id);
+                $resp = $bracketManager->delete($params);
                 break;
             case 'rename':
-                $resp = $bracketManager->rename($params->id, $params->name);
+                $resp = $bracketManager->rename($params);
+                break;
+            case 'shuffle':
+                $resp = $bracketManager->shuffle($params);
+                break;
+            case 'setWinner':
+                $resp = $bracketManager->setWinner($params);
                 break;
             case 'get':
                 $resp = $bracketManager->get($params);
@@ -54,6 +60,7 @@ class Api {
                 break;
             default:
                 $resp->error = 'action "' . $params->action . '" does not exist';
+                $this->respond(400, $resp);
                 break;
         }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormControl, FormGroup} from '@angular/forms';
 import {BracketsService} from '../../services/brackets-service/brackets.service';
 
 @Component({
@@ -19,10 +19,15 @@ export class BracketGeneratorComponent implements OnInit {
   ngOnInit() {
   }
 
+  public resetForm(): void {
+    this.bracketForm.reset();
+    this.bracketForm.get('playerCount').setValue('');
+  }
+
   public addBracket(): void {
     if (this.bracketForm.valid) {
       this.bracketService.addBracket(this.bracketForm.value.name, this.bracketForm.value.playerCount);
-      this.bracketForm.reset();
+      this.resetForm();
     }
   }
 }

@@ -14,11 +14,16 @@ import {
   MatInputModule,
   MatSelectModule,
   MatCardModule,
-  MatDivider,
   MatDividerModule
 } from '@angular/material';
 import { BracketGeneratorComponent } from './components/bracket-generator/bracket-generator.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoadingComponent } from './components/loading/loading.component';
+import { GameComponent } from './components/game/game.component';
+import { PlayerComponent } from './components/player/player.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,13 @@ import {ReactiveFormsModule} from '@angular/forms';
     BracketListComponent,
     BracketComponent,
     BracketPreviewComponent,
-    BracketGeneratorComponent
+    BracketGeneratorComponent,
+    LoadingComponent,
+    GameComponent,
+    PlayerComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +50,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatDividerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -51,4 +51,11 @@ export class DataService {
       action: 'getAll'
     });
   }
+
+  public shuffleBracketById(id: number): Observable<any> {
+    return this.http.post('/api/', {
+      action: 'shuffle',
+      id
+    });
+  }
 }

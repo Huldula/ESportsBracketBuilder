@@ -1,0 +1,18 @@
+@import "../../../styles";
+
+.main {
+  background-color: $small-background-color;
+  margin: 10px;
+  width: 200px;
+
+  color: $text-color;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 20px;
+
+  .upper-player {
+    border-bottom: solid 2px $button-border-color;
+  }
+}
