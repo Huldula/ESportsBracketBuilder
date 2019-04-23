@@ -21,11 +21,6 @@ class Bracket implements \JsonSerializable
     protected $games;
 
     /**
-     * @OneToMany(targetEntity="Player", mappedBy="bracket", cascade={"persist", "remove"})
-     **/
-    protected $players;
-
-    /**
      * @var string
      * @Column(type="string")
      */
@@ -33,18 +28,12 @@ class Bracket implements \JsonSerializable
 
     public function __construct()
     {
-        $this->players = new ArrayCollection();
         $this->games = new ArrayCollection();
     }
 
     public function assignedGame(Game $game)
     {
         $this->games[] = $game;
-    }
-
-    public function assignedPlayer(Player $player)
-    {
-        $this->players[] = $player;
     }
 
     public function getName(): string
@@ -67,18 +56,12 @@ class Bracket implements \JsonSerializable
         return $this->games;
     }
 
-    public function getPlayers()
-    {
-        return $this->players;
-    }
-
     public function jsonSerialize(): array
     {
        return array(
            'id' => $this->id,
            'name' => $this->getName(),
-           'games' => $this->getGames()->toArray(),
-           'players' => $this->getPlayers()->toArray()
+           'games' => $this->getGames()->toArray()
        );
     }
 

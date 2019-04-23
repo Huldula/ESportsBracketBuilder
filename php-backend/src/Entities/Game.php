@@ -26,6 +26,12 @@ class Game implements \JsonSerializable
     protected $player2;
 
     /**
+     * @ManyToOne(targetEntity="Player")
+     * @JoinColumn(name="player2_id", referencedColumnName="id")
+     */
+    protected $winner;
+
+    /**
      * @ManyToOne(targetEntity="Bracket", inversedBy="assignedGame")
      **/
     protected $bracket;
@@ -104,6 +110,7 @@ class Game implements \JsonSerializable
             'id' => $this->id,
             'player1' => $this->player1,
             'player2' => $this->player2,
+            'winner' => $this->
             'roundIndex' => $this->roundIndex,
             'positionIndex' => $this->positionIndex
         );

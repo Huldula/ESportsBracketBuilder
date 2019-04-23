@@ -200,6 +200,16 @@ class BracketManager extends EntityManagerProvider {
     public function setWinner($params): StdClass {
         $resp = new StdClass();
 
+        if (isset($params->id)) {
+            $player = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Player')
+                ->findOneBy(array( 'id' => $params->id ));
+        } else if (isset($params->name)) {
+            $player = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Player')
+                ->findOneBy(array( 'name' => $params->name ));
+        } else {
+            return self::withError($resp, 'Cannot set winner. Name or id has to be set');
+        }
+
 
 
         return $resp;

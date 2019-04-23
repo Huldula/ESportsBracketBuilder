@@ -41,7 +41,6 @@ class Player implements \JsonSerializable
 
     public function setBracket(Bracket $bracket)
     {
-        $bracket->assignedPlayer($this);
         $this->bracket = $bracket;
     }
 

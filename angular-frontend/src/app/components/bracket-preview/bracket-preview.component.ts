@@ -41,4 +41,8 @@ export class BracketPreviewComponent implements OnInit {
     this.isEditing = false;
     this.bracketsService.renameBracket(this.bracket, this.tempName);
   }
+
+  public getPlayerCount(): number {
+    return this.bracket.games.length * 2;
+  }
 }
