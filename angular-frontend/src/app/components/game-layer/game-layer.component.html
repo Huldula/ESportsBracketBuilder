@@ -1,0 +1,3 @@
+<div>
+  <app-game *ngFor="let game of games" [game]="game" (winnerEvent)="winnerEvent.emit($event)"></app-game>
+</div>

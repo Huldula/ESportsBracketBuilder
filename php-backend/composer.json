@@ -9,7 +9,8 @@
     ],
     "require": {
         "doctrine/orm": "^2.6",
-        "ext-json": "^1.7"
+        "ext-json": "*",
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {

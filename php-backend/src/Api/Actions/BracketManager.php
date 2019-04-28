@@ -37,6 +37,7 @@ class BracketManager extends EntityManagerProvider {
 
         $bracket = new Bracket();
         $bracket->setName($params->name);
+        $bracket->setPlayerCount($params->size);
 
         $players = [];
         for ($i = 0; $i < $params->size; $i++) {
@@ -194,6 +195,9 @@ class BracketManager extends EntityManagerProvider {
             $game->setPositionIndex($i);
         }
 
+
+        $this->entityManager->flush();
+
         return $resp;
     }
 
@@ -210,11 +214,65 @@ class BracketManager extends EntityManagerProvider {
             return self::withError($resp, 'Cannot set winner. Name or id has to be set');
         }
 
+        if ($player == null) {
+            return self::withError($resp, 'Cannot set winner. Player does not exist');
+        }
 
+        $games = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Game')
+            ->findBy(array('player1' => $player));
+        $games = array_merge($games, $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Game')
+            ->findBy(array('player2' => $player)));
+
+        if ($games == null) {
+            return self::withError($resp, 'Cannot set winner. No game with given player found.');
+        }
+
+        $game = $games[0];
+//        return self::withError($resp, $games[0]->getId());
+
+        foreach ($games as $g) {
+            if ($g->getRoundIndex() > $game->getRoundIndex()) {
+                $game = $g;
+            }
+        }
+
+        $game->setWinner($player);
+
+        $roundIndex = $game->getRoundIndex() + 1;
+        $positionIndex = floor($game->getPositionIndex() / 2);
+
+        $newGame = $this->getGame($game->getBracket(), $roundIndex, $positionIndex);
+
+        if (pow(2, $roundIndex) < $game->getBracket()->getPlayerCount()) {
+            $newGame = $this->getGame($game->getBracket(), $roundIndex, $positionIndex);
+
+            if ($newGame == null) {
+                $newGame = new Game();
+                $newGame->setBracket($game->getBracket());
+                $newGame->setRoundIndex($roundIndex);
+                $newGame->setPositionIndex($positionIndex);
+            }
+        }
+
+        if ($game != null && $newGame != null) {
+            if ((float)$game->getPositionIndex() / 2 == $positionIndex) {
+                $newGame->setPlayer1($game->getWinner());
+            } else {
+                $newGame->setPlayer2($game->getWinner());
+            }
+        }
+
+        $this->entityManager->flush();
+
+        $resp->response = $game->getBracket();
 
         return $resp;
     }
 
+    private function getGame(Bracket $bracket, int $roundIndex, int $positionIndex) {
+        return $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Game')
+            ->findOneBy(array('bracket' => $bracket, 'roundIndex' => $roundIndex, 'positionIndex' => $positionIndex));
+    }
 
     private static function withError($resp, string $error) {
         $resp->error = $error;

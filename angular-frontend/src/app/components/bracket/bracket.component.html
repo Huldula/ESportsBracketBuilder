@@ -2,6 +2,6 @@
   <h1>{{bracket.name}}</h1>
 
   <section id="games">
-    <app-game *ngFor="let game of bracket.games" [game]="game"></app-game>
+    <app-game-layer *ngFor="let gameLayer of gameLayers" [games]="gameLayer" (winnerEvent)="initGameLayers($event)"></app-game-layer>
   </section>
 </section>

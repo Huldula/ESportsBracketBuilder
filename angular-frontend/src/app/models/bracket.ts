@@ -4,4 +4,5 @@ export interface Bracket {
   id: number;
   name: string;
   games: Game[];
+  playerCount: number;
 }

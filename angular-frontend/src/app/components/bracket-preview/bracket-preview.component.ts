@@ -43,6 +43,6 @@ export class BracketPreviewComponent implements OnInit {
   }
 
   public getPlayerCount(): number {
-    return this.bracket.games.length * 2;
+    return this.bracket.playerCount;
   }
 }

@@ -26,6 +26,12 @@ class Bracket implements \JsonSerializable
      */
     protected $name;
 
+    /**
+     * @var int
+     * @Column(type="integer")
+     */
+    protected $playerCount;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -56,12 +62,23 @@ class Bracket implements \JsonSerializable
         return $this->games;
     }
 
+    public function setPlayerCount(int $playerCount): void
+    {
+        $this->playerCount = $playerCount;
+    }
+
+    public function getPlayerCount(): int
+    {
+        return $this->playerCount;
+    }
+
     public function jsonSerialize(): array
     {
        return array(
            'id' => $this->id,
            'name' => $this->getName(),
-           'games' => $this->getGames()->toArray()
+           'games' => $this->getGames()->toArray(),
+           'playerCount' => $this->getPlayerCount()
        );
     }
 

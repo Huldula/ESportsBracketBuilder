@@ -24,6 +24,7 @@ import { PlayerComponent } from './components/player/player.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { GameLayerComponent } from './components/game-layer/game-layer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ContactComponent } from './components/contact/contact.component';
     PlayerComponent,
     NavbarComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    GameLayerComponent
   ],
   imports: [
     BrowserModule,

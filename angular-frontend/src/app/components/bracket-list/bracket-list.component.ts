@@ -12,7 +12,7 @@ export class BracketListComponent implements OnInit {
   constructor(private bracketService: BracketsService, private title: Title) { }
 
   ngOnInit() {
-    this.title.setTitle('EsportsBracketBuilder/home');
+    this.title.setTitle('ESportsBracketBuilder/home');
   }
 
 }

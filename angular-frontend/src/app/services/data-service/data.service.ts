@@ -52,6 +52,13 @@ export class DataService {
     });
   }
 
+  public setWinnerById(id: number): Observable<any> {
+    return this.http.post('/api/', {
+      action: 'setWinner',
+      id
+    });
+  }
+
   public shuffleBracketById(id: number): Observable<any> {
     return this.http.post('/api/', {
       action: 'shuffle',

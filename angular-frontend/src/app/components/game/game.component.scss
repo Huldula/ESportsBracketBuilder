@@ -16,3 +16,9 @@
     border-bottom: solid 2px $button-border-color;
   }
 }
+
+.hide {
+  opacity: 0;
+  border: none;
+  cursor: auto;
+}

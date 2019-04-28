@@ -14,20 +14,20 @@ class Game implements \JsonSerializable
     protected $id;
 
     /**
-     * @ManyToOne(targetEntity="Player")
+     * @ManyToOne(targetEntity="Player", cascade={"persist", "remove"})
      * @JoinColumn(name="player1_id", referencedColumnName="id")
      */
     protected $player1;
 
     /**
-     * @ManyToOne(targetEntity="Player")
+     * @ManyToOne(targetEntity="Player", cascade={"persist", "remove"})
      * @JoinColumn(name="player2_id", referencedColumnName="id")
      */
     protected $player2;
 
     /**
-     * @ManyToOne(targetEntity="Player")
-     * @JoinColumn(name="player2_id", referencedColumnName="id")
+     * @ManyToOne(targetEntity="Player", cascade={"persist", "remove"})
+     * @JoinColumn(name="winner_id", referencedColumnName="id")
      */
     protected $winner;
 
@@ -73,6 +73,16 @@ class Game implements \JsonSerializable
         $this->player2 = $player2;
     }
 
+    public function getWinner()
+    {
+        return $this->winner;
+    }
+
+    public function setWinner(Player $winner): void
+    {
+        $this->winner = $winner;
+    }
+
     public function setBracket(Bracket $bracket)
     {
         $bracket->assignedGame($this);
@@ -110,7 +120,7 @@ class Game implements \JsonSerializable
             'id' => $this->id,
             'player1' => $this->player1,
             'player2' => $this->player2,
-            'winner' => $this->
+            'winner' => $this->winner,
             'roundIndex' => $this->roundIndex,
             'positionIndex' => $this->positionIndex
         );

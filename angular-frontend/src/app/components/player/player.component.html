@@ -1,6 +1,6 @@
 <div>
-  <span>{{player.name}}</span>
-  <button>
+  <span>{{player ? player.name : '-'}}</span>
+  <button (click)="setWinner()" [disabled]="player ? false : true">
     <i class="material-icons">chevron_right</i>
   </button>
 </div>

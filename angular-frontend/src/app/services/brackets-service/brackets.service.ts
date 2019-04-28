@@ -51,6 +51,20 @@ export class BracketsService {
     this.data.shuffleBracketById(id).subscribe(console.log);
   }
 
+  public async setWinnerById(id: number): Promise<Bracket> {
+    const resp = await this.data.setWinnerById(id).toPromise();
+    if (!resp.response.response) {
+      console.log(resp);
+      return null;
+    }
+    for (let bracket of this.brackets) {
+      if (bracket.id === resp.response.response.id) {
+        bracket = resp.response.response;
+      }
+    }
+    return resp.response.response;
+  }
+
   private bracketNameExists(name: string): boolean {
     return this.brackets.findIndex(b => b.name.toUpperCase() === name.toUpperCase()) !== -1;
   }
