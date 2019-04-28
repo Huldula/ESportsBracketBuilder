@@ -70,7 +70,6 @@ class Api {
     private function respond(int $code, StdClass $resp) {
         http_response_code($code);
         $out = array(
-            'status' => 'oida',
             'response' => $resp
         );
         echo json_encode($out);
