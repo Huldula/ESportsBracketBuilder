@@ -9,7 +9,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class BracketListComponent implements OnInit {
 
-  constructor(private bracketService: BracketsService, private title: Title) { }
+  constructor(public bracketService: BracketsService, private title: Title) { }
 
   ngOnInit() {
     this.title.setTitle('ESportsBracketBuilder/home');

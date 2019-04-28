@@ -8,7 +8,7 @@ import {BracketsService} from './services/brackets-service/brackets.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private bs: BracketsService) {
+  constructor(public bs: BracketsService) {
 
   }
 

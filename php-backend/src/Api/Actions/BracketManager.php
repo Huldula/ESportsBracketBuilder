@@ -27,11 +27,7 @@ class BracketManager extends EntityManagerProvider {
             return self::withError($resp, 'Cannot create bracket. Name "' . $params->name . '"" already exists');
         }
 
-        $sizeTest = $params->size;
-        while ($sizeTest > 1) {
-            $sizeTest = $sizeTest / 2;
-        }
-        if ($sizeTest != 1) {
+        if (!self::isValidSize($params->size)) {
             return self::withError($resp, 'Cannot create bracket. Size must me a potency of two. got ' . $params->size);
         }
 
@@ -64,6 +60,14 @@ class BracketManager extends EntityManagerProvider {
         $resp->response = $bracket;
 
         return $resp;
+    }
+
+    public static function isValidSize(int $size): bool {
+        $sizeTest = $size;
+        while ($sizeTest > 1) {
+            $sizeTest = $sizeTest / 2;
+        }
+        return $sizeTest == 1;
     }
 
     public function delete($params): StdClass {
